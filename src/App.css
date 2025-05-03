@@ -1,0 +1,63 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.switch {
+  padding: 4em;
+}
+
+.switch-doing {
+  padding: 1em;
+  font-size: 2rem;
+  color: green;
+}
+
+.switch-doing[data-is-doing="is-doing"] {
+  color: orange;
+}
+
+.doing-blinker {
+  color: green;
+  font-size: 2rem;
+  font-weight: bold;
+  animation: blinker 1s linear infinite alternate;
+}
+
+@keyframes blinker {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.start-time {
+  padding: 2em;
+}
+
+.do-times {
+  padding: 2em;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+  .do-times-part {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.5rem;
+  }
+}
+.do-times-part:nth-child(even) {
+  background-color: hsl(0 50 100 / 0.1);
+}
+
+.delete-times {
+  color: red;
+}
