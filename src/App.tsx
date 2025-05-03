@@ -104,13 +104,7 @@ function App() {
       ) : null}
       {reverseDoTimes.length ? (
         <div>
-          <button
-            className='delete-times'
-            onClick={() => {
-              window.navigator.vibrate([300]);
-              handleDeleteDoTimes();
-            }}
-          >
+          <button className='delete-times' onClick={handleDeleteDoTimes}>
             DELETE ALL TIMES
           </button>
         </div>
