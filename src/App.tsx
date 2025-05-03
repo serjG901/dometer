@@ -187,7 +187,7 @@ function App() {
 
       {reverseDoTimes.length ? (
         <div>
-          <button className='delete-times' onClick={handleDeleteDoTimes}>
+          <button className='delete-times' disabled={isDoing} onClick={handleDeleteDoTimes}>
             DELETE {type ? <span>{type}</span> : "ALL"} TIMES
           </button>
         </div>
