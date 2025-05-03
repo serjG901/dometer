@@ -567,6 +567,12 @@
       "src": "/dometer/images/ios/1024.png",
       "sizes": "1024x1024",
       "purpose": "maskable"
+    },
+    {
+      "src": "/dometer/images/ios/512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
     }
   ],
   "start_url": "/dometer/",
