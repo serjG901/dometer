@@ -43,6 +43,12 @@ button:focus-visible {
   color: orange;
 }
 
+.resting {
+  color: orange;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
 .doing-blinker {
   color: green;
   font-size: 2rem;
@@ -101,6 +107,6 @@ button:focus-visible {
 }
 
 .delete-times {
-  margin-block: 4rem;
+  margin-block-start: 4rem;
   color: red;
 }

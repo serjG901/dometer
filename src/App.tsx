@@ -44,44 +44,52 @@ function App() {
           {isDoing ? "let's Rest" : "to Do!"}
         </button>
       </div>
-      {isDoing ? <div className='doing-blinker'>is doing!</div> : null}
-      {startTime ? (
-        <div className='start-time'>{new Date(startTime).toLocaleString()}</div>
-      ) : null}
+      {isDoing ? (
+        <div className='doing-blinker'>is doing!</div>
+      ) : (
+        <div className='resting'>is resting</div>
+      )}
+
+      <div className='start-time'>
+        {startTime ? new Date(startTime).toLocaleString() : "..."}
+      </div>
+
       {summTimes ? (
         <div className='sum-times'>
           sum = {summTimes} sec ~ {Math.round(summTimes / 60)} min ~{" "}
           {Math.round(summTimes / (60 * 60))} h
         </div>
       ) : null}
-      <div className='do-times'>
-        <div className='do-times-part'>
-          <div>times</div>
-          <div>start</div>
-          <div>end</div>
+      {reverseDoTimes.length ? (
+        <div className='do-times'>
+          <div className='do-times-part'>
+            <div>times</div>
+            <div>start</div>
+            <div>end</div>
+          </div>
+          {reverseDoTimes.map((times, i) => {
+            const sec = Math.ceil((times[1] - times[0]) / 1000);
+            const dateTime1 = new Date(times[0]).toLocaleString().split(",");
+            const dateTime2 = new Date(times[1]).toLocaleString().split(",");
+            return (
+              <div className='do-times-part' key={i}>
+                <div>
+                  <div>{sec} sec</div>
+                  <div>~{Math.round(sec / 60)} min</div>
+                </div>
+                <div>
+                  <div>{dateTime1[0]}</div>
+                  <div>{dateTime1[1]}</div>
+                </div>
+                <div>
+                  <div>{dateTime2[0]}</div>
+                  <div>{dateTime2[1]}</div>
+                </div>
+              </div>
+            );
+          })}
         </div>
-        {reverseDoTimes.map((times, i) => {
-          const sec = Math.ceil((times[1] - times[0]) / 1000);
-          const dateTime1 = new Date(times[0]).toLocaleString().split(",");
-          const dateTime2 = new Date(times[1]).toLocaleString().split(",");
-          return (
-            <div className='do-times-part' key={i}>
-              <div>
-                <div>{sec} sec</div>
-                <div>~{Math.round(sec / 60)} min</div>
-              </div>
-              <div>
-                <div>{dateTime1[0]}</div>
-                <div>{dateTime1[1]}</div>
-              </div>
-              <div>
-                <div>{dateTime2[0]}</div>
-                <div>{dateTime2[1]}</div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+      ) : null}
       <div>
         <button className='delete-times' onClick={handleDeleteDoTimes}>
           DELETE ALL TIMES

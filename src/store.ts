@@ -24,9 +24,10 @@ const useDometerStore = create<State>()(
           set((state) => ({
             doTimes: [...state.doTimes, [state.startTime, Date.now()]],
             isDoing: false,
+            startTime: 0,
           }));
       },
-      deleteDoTimes: () => set({ doTimes: [] }),
+      deleteDoTimes: () => set({ doTimes: [], isDoing: false, startTime: 0 }),
     }),
     { name: "dometerStore" }
   )
