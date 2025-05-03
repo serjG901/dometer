@@ -1,6 +1,7 @@
 import "./App.css";
 import useDometerStore from "./store";
 import { useShallow } from "zustand/react/shallow";
+import Logo from "./assets/logo.png";
 
 function App() {
   const [startTime, isDoing, doTimes, startDoing, endDoing, deleteDoTimes] =
@@ -30,7 +31,10 @@ function App() {
   }, 0);
   return (
     <>
-      <h1>DoMeter</h1>
+      <div>
+        <img src={Logo} width={64} height={64} />
+      </div>
+      <h1>dometer</h1>
       <div className='switch'>
         <button
           className='switch-doing'
@@ -45,7 +49,7 @@ function App() {
         <div className='start-time'>{new Date(startTime).toLocaleString()}</div>
       ) : null}
       {summTimes ? (
-        <div className='summ-times'>
+        <div className='sum-times'>
           sum = {summTimes} sec ~ {Math.round(summTimes / 60)} min ~{" "}
           {Math.round(summTimes / (60 * 60))} h
         </div>
@@ -53,12 +57,8 @@ function App() {
       <div className='do-times'>
         <div className='do-times-part'>
           <div>times</div>
-          <div>
-            <div>start</div>
-          </div>
-          <div>
-            <div>end</div>
-          </div>
+          <div>start</div>
+          <div>end</div>
         </div>
         {reverseDoTimes.map((times, i) => {
           const sec = Math.ceil((times[1] - times[0]) / 1000);
@@ -66,7 +66,10 @@ function App() {
           const dateTime2 = new Date(times[1]).toLocaleString().split(",");
           return (
             <div className='do-times-part' key={i}>
-              <div>{sec}</div>
+              <div>
+                <div>{sec} sec</div>
+                <div>~{Math.round(sec / 60)} min</div>
+              </div>
               <div>
                 <div>{dateTime1[0]}</div>
                 <div>{dateTime1[1]}</div>

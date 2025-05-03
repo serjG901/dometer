@@ -1,4 +1,5 @@
 {
+  "homepage": "https://serjg901.github.io/dometer/",
   "name": "dometer",
   "private": true,
   "version": "0.0.0",
@@ -12,6 +13,7 @@
   "dependencies": {
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "vite-plugin-pwa": "^1.0.0",
     "zustand": "^5.0.4"
   },
   "devDependencies": {
