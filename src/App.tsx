@@ -69,6 +69,7 @@ function App() {
         id='type-to-do'
         name='what to do'
         valueFromParent={type}
+        disabled={isDoing}
         hoistValue={setType}
         options={Array.from(new Set(doTimes.map((t) => t.type)))}
       />
