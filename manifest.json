@@ -1,6 +1,6 @@
 {
-  "short_name": "DOMETER",
-  "name": "DOMETER: fixing time that you spend to do",
+  "short_name": "dometer",
+  "name": "dometer: fixing time that you spend to do",
   "icons": [
     {
       "src": "/dometer/images/windows11/SmallTile.scale-100.png",
@@ -570,11 +570,11 @@
     }
   ],
   "start_url": "/dometer/",
-  "background_color": "#008080",
+  "background_color": "#242424",
   "display": "standalone",
   "scope": "/dometer/",
   "description": "fixing time that you spend to do",
-  "theme_color": "#000000",
+  "theme_color": "#242424",
   "id": "10",
   "lang": "en",
   "orientation": "any",
