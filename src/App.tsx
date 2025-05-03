@@ -91,11 +91,13 @@ function App() {
           })}
         </div>
       ) : null}
-      <div>
-        <button className='delete-times' onClick={handleDeleteDoTimes}>
-          DELETE ALL TIMES
-        </button>
-      </div>
+      {reverseDoTimes.length ? (
+        <div>
+          <button className='delete-times' onClick={handleDeleteDoTimes}>
+            DELETE ALL TIMES
+          </button>
+        </div>
+      ) : null}
       <PWABadge />
     </>
   );
