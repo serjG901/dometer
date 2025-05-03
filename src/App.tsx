@@ -139,7 +139,7 @@ function App() {
             );
             return (
               <div className='sum-times-part'>
-                <div>{key}</div>
+                <div><button disabled={isDoing} onClick={()=>setType(key)}>{key}</button></div>
                 <div>
                   {sum} sec ~ {Math.round(sum / 60)} min ~{" "}
                   {Math.round(sum / (60 * 60))} h
