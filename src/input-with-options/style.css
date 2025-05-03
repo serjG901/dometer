@@ -1,0 +1,15 @@
+.input-with-options {
+  label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    span {
+      color: gray;
+    }
+    input {
+      font-size: 1.2rem;
+      width: 100%;
+      max-width: 16ch;
+    }
+  }
+}

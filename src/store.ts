@@ -2,9 +2,11 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
 interface State {
+  type: string;
   startTime: number;
   isDoing: boolean;
-  doTimes: [number, number][];
+  doTimes: { type: string; start: number; end: number }[];
+  setType: (type: string) => void;
   startDoing: () => void;
   endDoing: () => void;
   deleteDoTimes: () => void;
@@ -13,16 +15,26 @@ interface State {
 const useDometerStore = create<State>()(
   persist(
     (set, get) => ({
+      type: "",
       startTime: 0,
       isDoing: false,
       doTimes: [],
+      setType: (type) => set({ type }),
       startDoing: () => {
-        if (!get().isDoing) set({ startTime: Date.now(), isDoing: true });
+        if (!get().isDoing)
+          set((state) => ({
+            type: state.type,
+            startTime: Date.now(),
+            isDoing: true,
+          }));
       },
       endDoing: () => {
         if (get().isDoing)
           set((state) => ({
-            doTimes: [...state.doTimes, [state.startTime, Date.now()]],
+            doTimes: [
+              ...state.doTimes,
+              { type: state.type, start: state.startTime, end: Date.now() },
+            ],
             isDoing: false,
             startTime: 0,
           }));

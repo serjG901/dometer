@@ -1,21 +1,36 @@
+import { useState } from "react";
 import "./App.css";
 import useDometerStore from "./store";
 import { useShallow } from "zustand/react/shallow";
 import Logo from "./assets/logo.png";
 import PWABadge from "./PWABadge";
+import InputWithOptions from "./input-with-options/InputWithOptions";
+import Checked from "./checked/Checked";
 
 function App() {
-  const [startTime, isDoing, doTimes, startDoing, endDoing, deleteDoTimes] =
-    useDometerStore(
-      useShallow((state) => [
-        state.startTime,
-        state.isDoing,
-        state.doTimes,
-        state.startDoing,
-        state.endDoing,
-        state.deleteDoTimes,
-      ])
-    );
+  const [isFiltred, setIsFiltred] = useState(false);
+
+  const [
+    type,
+    startTime,
+    isDoing,
+    doTimes,
+    setType,
+    startDoing,
+    endDoing,
+    deleteDoTimes,
+  ] = useDometerStore(
+    useShallow((state) => [
+      state.type,
+      state.startTime,
+      state.isDoing,
+      state.doTimes,
+      state.setType,
+      state.startDoing,
+      state.endDoing,
+      state.deleteDoTimes,
+    ])
+  );
 
   const handleSwitchDoing = () => {
     if (isDoing) {
@@ -35,28 +50,72 @@ function App() {
   };
 
   const reverseDoTimes = [...doTimes].reverse();
-  const summTimes = doTimes.reduce((acc, a) => {
-    return acc + Math.ceil((a[1] - a[0]) / 1000);
-  }, 0);
+
+  const displaingDoTimes = isFiltred
+    ? reverseDoTimes.filter((t) => t.type === type)
+    : reverseDoTimes;
+
+  const summTimes = Object.groupBy(displaingDoTimes, ({ type }) => type);
+
   return (
     <>
       <div>
         <img src={Logo} width={64} height={64} />
       </div>
+
       <h1>dometer</h1>
+
+      <InputWithOptions
+        id='type-to-do'
+        name='what to do'
+        valueFromParent={type}
+        hoistValue={setType}
+        options={Array.from(new Set(doTimes.map((t) => t.type)))}
+      />
+
+      <Checked
+        id='is-filtred'
+        name='apply filter'
+        valueFromParent={isFiltred}
+        hoistValue={setIsFiltred}
+      />
+
       <div className='switch'>
         <button
           className='switch-doing'
           data-is-doing={isDoing ? "is-doing" : ""}
           onClick={handleSwitchDoing}
         >
-          {isDoing ? "let's rest" : "let's do!"}
+          {isDoing ? (
+            "let's rest"
+          ) : (
+            <>
+              let's{" "}
+              {type.search(/ing$/) !== -1 ? (
+                <span>{type}</span>
+              ) : (
+                <>
+                  doing <span>{type}</span>
+                </>
+              )}
+            </>
+          )}
         </button>
       </div>
+
       {isDoing ? (
-        <div className='doing-blinker'>is doing!</div>
+        <div className='doing-blinker'>
+          you are{" "}
+          {type.search(/ing$/) !== -1 ? (
+            <span>{type}</span>
+          ) : (
+            <>
+              doing <span>{type}</span>
+            </>
+          )}
+        </div>
       ) : (
-        <div className='resting'>is resting</div>
+        <div className='resting'>you are resting</div>
       )}
 
       <div className='start-time'>
@@ -66,25 +125,47 @@ function App() {
           : "..."}
       </div>
 
-      {summTimes ? (
+      {Object.keys(summTimes).length ? (
         <div className='sum-times'>
-          sum = {summTimes} sec ~ {Math.round(summTimes / 60)} min ~{" "}
-          {Math.round(summTimes / (60 * 60))} h
+          <div className='sum-times-part'>
+            <div>type</div>
+            <div>sum</div>
+          </div>
+          {Object.keys(summTimes).map((key) => {
+            const sum = summTimes[key]!.reduce(
+              (acc, a) => acc + Math.ceil((a.end - a.start) / 1000),
+              0
+            );
+            return (
+              <div className='sum-times-part'>
+                <div>{key}</div>
+                <div>
+                  {sum} sec ~ {Math.round(sum / 60)} min ~{" "}
+                  {Math.round(sum / (60 * 60))} h
+                </div>
+              </div>
+            );
+          })}
         </div>
       ) : null}
-      {reverseDoTimes.length ? (
+
+      {displaingDoTimes.length ? (
         <div className='do-times'>
           <div className='do-times-part'>
+            <div>type</div>
             <div>start</div>
             <div>time</div>
             <div>end</div>
           </div>
-          {reverseDoTimes.map((times, i) => {
-            const sec = Math.ceil((times[1] - times[0]) / 1000);
-            const dateTime1 = new Date(times[0]).toLocaleString().split(",");
-            const dateTime2 = new Date(times[1]).toLocaleString().split(",");
+          {displaingDoTimes.map((time, i) => {
+            const sec = Math.ceil((time.end - time.start) / 1000);
+            const dateTime1 = new Date(time.start).toLocaleString().split(",");
+            const dateTime2 = new Date(time.end).toLocaleString().split(",");
             return (
               <div className='do-times-part' key={i}>
+                <div>
+                  <div>{time.type}</div>
+                </div>
                 <div>
                   <div>{dateTime1[0]}</div>
                   <div>{dateTime1[1]}</div>
@@ -102,6 +183,7 @@ function App() {
           })}
         </div>
       ) : null}
+
       {reverseDoTimes.length ? (
         <div>
           <button className='delete-times' onClick={handleDeleteDoTimes}>
@@ -109,6 +191,7 @@ function App() {
           </button>
         </div>
       ) : null}
+
       <PWABadge />
     </>
   );

@@ -1,0 +1,30 @@
+.checked {
+  label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem;
+    span {
+      color: gray;
+    }
+    input:focus,
+    input:focus-visible {
+      outline: none;
+    }
+  }
+  label:has(input[data-checked="true"]) {
+    background-color: #007bff;
+    span {
+      color: color(
+        from var(--color-main-light-accent) srgb
+          calc(1 - round(calc(r + calc(g * 1.6) + calc(b * 0.4)) / 3, 1))
+          calc(1 - round(calc(r + calc(g * 1.6) + calc(b * 0.4)) / 3, 1))
+          calc(1 - round(calc(r + calc(g * 1.6) + calc(b * 0.4)) / 3, 1))
+      );
+    }
+  }
+  label:has(input:focus),
+  label:has(input:focus-visible) {
+    outline: 4px double #007bff;
+  }
+}
