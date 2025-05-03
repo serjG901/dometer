@@ -2,6 +2,7 @@ import "./App.css";
 import useDometerStore from "./store";
 import { useShallow } from "zustand/react/shallow";
 import Logo from "./assets/logo.png";
+import PWABadge from "./PWABadge";
 
 function App() {
   const [startTime, isDoing, doTimes, startDoing, endDoing, deleteDoTimes] =
@@ -95,6 +96,7 @@ function App() {
           DELETE ALL TIMES
         </button>
       </div>
+      <PWABadge />
     </>
   );
 }
