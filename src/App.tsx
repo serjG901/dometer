@@ -42,7 +42,7 @@ function App() {
           data-is-doing={isDoing ? "is-doing" : ""}
           onClick={handleSwitchDoing}
         >
-          {isDoing ? "let's Rest" : "to Do!"}
+          {isDoing ? "let's rest" : "let's do!"}
         </button>
       </div>
       {isDoing ? (
