@@ -580,6 +580,26 @@
   "display": "standalone",
   "scope": "/dometer/",
   "description": "fixing time that you spend to do",
+  "screenshots": [
+    {
+      "src": "/dometer/images/screenshot1.png",
+      "type": "image/png",
+      "sizes": "540x720",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/dometer/images/screenshot2.png",
+      "type": "image/png",
+      "sizes": "540x720",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/dometer/images/screenshot3.png",
+      "type": "image/png",
+      "sizes": "720x540",
+      "form_factor": "wide"
+    }
+  ],
   "theme_color": "#242424",
   "id": "10",
   "lang": "en",
