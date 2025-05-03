@@ -39,7 +39,14 @@ const useDometerStore = create<State>()(
             startTime: 0,
           }));
       },
-      deleteDoTimes: () => set({ doTimes: [], isDoing: false, startTime: 0 }),
+      deleteDoTimes: () =>
+        set((state) => ({
+          doTimes: state.type
+            ? state.doTimes.filter((t) => t.type !== state.type)
+            : [],
+          isDoing: false,
+          startTime: 0,
+        })),
     }),
     { name: "dometerStore" }
   )

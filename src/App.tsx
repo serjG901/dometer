@@ -43,7 +43,7 @@ function App() {
   };
 
   const handleDeleteDoTimes = () => {
-    if (confirm("Delete all times?")) {
+    if (confirm(`Delete ${type ? type : "ALL"} times?`)) {
       window.navigator.vibrate([300, 100, 300, 100, 300]);
       deleteDoTimes();
     }
@@ -187,7 +187,7 @@ function App() {
       {reverseDoTimes.length ? (
         <div>
           <button className='delete-times' onClick={handleDeleteDoTimes}>
-            DELETE ALL TIMES
+            DELETE {type ? <span>{type}</span> : "ALL"} TIMES
           </button>
         </div>
       ) : null}

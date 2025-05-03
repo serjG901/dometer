@@ -131,7 +131,11 @@
 }
 
 .delete-times {
-  margin-block-start: 4rem;
+  margin-block-start: 10rem;
   color: red;
   padding: 1rem;
+  font-size: 1.5rem;
+  span {
+    color: #007bff;
+  }
 }
