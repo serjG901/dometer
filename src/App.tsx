@@ -52,7 +52,10 @@ function App() {
       )}
 
       <div className='start-time'>
-        {startTime ? new Date(startTime).toLocaleString() : "..."}
+        {startTime
+          ? "started at " +
+            new Date(startTime).toLocaleString().split(",").reverse().join(" ")
+          : "..."}
       </div>
 
       {summTimes ? (
@@ -64,8 +67,8 @@ function App() {
       {reverseDoTimes.length ? (
         <div className='do-times'>
           <div className='do-times-part'>
-            <div>times</div>
             <div>start</div>
+            <div>time</div>
             <div>end</div>
           </div>
           {reverseDoTimes.map((times, i) => {
@@ -75,12 +78,12 @@ function App() {
             return (
               <div className='do-times-part' key={i}>
                 <div>
-                  <div>{sec} sec</div>
-                  <div>~{Math.round(sec / 60)} min</div>
-                </div>
-                <div>
                   <div>{dateTime1[0]}</div>
                   <div>{dateTime1[1]}</div>
+                </div>
+                <div>
+                  <div>{sec} sec</div>
+                  <div>~{Math.round(sec / 60)} min</div>
                 </div>
                 <div>
                   <div>{dateTime2[0]}</div>

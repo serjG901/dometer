@@ -1,7 +1,9 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-block: 2rem;
   text-align: center;
 }
 
@@ -89,13 +91,15 @@ button:focus-visible {
     grid-template-columns: 1fr 1fr 1fr;
     gap: 0.5rem;
     > div:nth-child(1) {
-      color: #007bff;
+      color: green;
+      text-align: end;
     }
     > div:nth-child(2) {
-      color: green;
+      color: #007bff;
     }
     > div:nth-child(3) {
       color: orange;
+      text-align: start;
     }
   }
   .do-times-part:first-child {
