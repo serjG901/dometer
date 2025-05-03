@@ -18,12 +18,21 @@ function App() {
     );
 
   const handleSwitchDoing = () => {
-    if (isDoing) endDoing();
-    else startDoing();
+    if (isDoing) {
+      window.navigator.vibrate([100, 50, 100]);
+      endDoing();
+    } else {
+      window.navigator.vibrate([100]);
+      startDoing();
+    }
   };
 
   const handleDeleteDoTimes = () => {
-    if (confirm("Delete all times?")) deleteDoTimes();
+    window.navigator.vibrate([100]);
+    if (confirm("Delete all times?")) {
+      window.navigator.vibrate([100, 50, 100]);
+      deleteDoTimes();
+    }
   };
 
   const reverseDoTimes = [...doTimes].reverse();
