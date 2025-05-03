@@ -8,6 +8,7 @@ interface InputWithOptionsComponent {
   valueFromParent?: string;
   hoistValue?: (value: string) => void;
   handleFocusLeave?: () => void;
+  disabled?: boolean;
 }
 
 export default function InputWithOptions({
@@ -17,6 +18,7 @@ export default function InputWithOptions({
   valueFromParent = "",
   hoistValue = () => {},
   handleFocusLeave = () => {},
+  disabled = false
 }: InputWithOptionsComponent) {
   const [state, setState] = useState(valueFromParent);
 
@@ -40,6 +42,7 @@ export default function InputWithOptions({
           type='text'
           maxLength={32}
           value={state}
+          disabled={disabled}
           onChange={handleChange}
           onBlur={handleFocusLeave}
           list={options && options.length ? `datalist-for-${id}` : undefined}
