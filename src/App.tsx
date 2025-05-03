@@ -19,18 +19,18 @@ function App() {
 
   const handleSwitchDoing = () => {
     if (isDoing) {
-      window.navigator.vibrate([100, 50, 100]);
+      window.navigator.vibrate([300, 100, 300]);
       endDoing();
     } else {
-      window.navigator.vibrate([100]);
+      window.navigator.vibrate([300]);
       startDoing();
     }
   };
 
   const handleDeleteDoTimes = () => {
-    window.navigator.vibrate([100]);
+    window.navigator.vibrate([300]);
     if (confirm("Delete all times?")) {
-      window.navigator.vibrate([100, 50, 100]);
+      window.navigator.vibrate([300, 100, 300]);
       deleteDoTimes();
     }
   };
