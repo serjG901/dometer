@@ -30,7 +30,7 @@ function App() {
   const handleDeleteDoTimes = () => {
     window.navigator.vibrate([300]);
     if (confirm("Delete all times?")) {
-      window.navigator.vibrate([300, 100, 300]);
+      window.navigator.vibrate([300, 100, 300, 100, 300]);
       deleteDoTimes();
     }
   };
