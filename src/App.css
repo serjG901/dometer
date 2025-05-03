@@ -71,11 +71,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
-    > div:nth-child(1) {
+    > div {
       align-content: center;
-    }
-    > div:nth-child(2) {
-      color: #007bff;
     }
   }
   .sum-times-part:first-child {
@@ -104,17 +101,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 0.5rem;
-    > div:nth-child(1) {
+    > div{
       align-content: center;
-    }
-    > div:nth-child(2) {
-      color: green;
-    }
-    > div:nth-child(3) {
-      color: #007bff;
-    }
-    > div:nth-child(4) {
-      color: orange;
     }
   }
   .do-times-part:first-child {
