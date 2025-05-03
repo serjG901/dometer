@@ -37,6 +37,9 @@ button:not(:disabled):focus,
 button:not(:disabled):focus-visible {
   outline: 2px solid #007bff;
 }
+button:disabled {
+  opacity: 0.5;
+}
 
 label {
   cursor: pointer;
@@ -56,4 +59,8 @@ input:not(:disabled):hover {
 input:not(:disabled):focus,
 input:not(:disabled):focus-visible {
   outline: 2px solid #007bff;
+}
+
+input:disabled {
+  opacity: 0.5;
 }
