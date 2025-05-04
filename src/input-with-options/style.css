@@ -12,13 +12,12 @@
       width: 100%;
       max-width: 18ch;
     }
-  }
-
-  .input-with-options-clear {
-    position: absolute;
-    bottom: 0.2rem;
-    right: 0.2rem;
-    scale: 0.8;
-    color: red;
+    .input-with-options-clear {
+      position: absolute;
+      bottom: 0.2rem;
+      right: 0.2rem;
+      scale: 0.8;
+      color: red;
+    }
   }
 }
