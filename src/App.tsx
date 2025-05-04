@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import useDometerStore from "./store";
 import { useShallow } from "zustand/react/shallow";
-import Logo from "./assets/logo.png";
+import Logo from "./assets/logo512.png";
 import PWABadge from "./PWABadge";
 import InputWithOptions from "./input-with-options/InputWithOptions";
 import Checked from "./checked/Checked";
