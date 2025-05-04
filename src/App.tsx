@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import useDometerStore from "./store";
 import { useShallow } from "zustand/react/shallow";
@@ -9,6 +9,8 @@ import Checked from "./checked/Checked";
 
 function App() {
   const [isFiltred, setIsFiltred] = useState(false);
+
+  const [timer, setTimer] = useState(0);
 
   const [
     type,
@@ -57,6 +59,19 @@ function App() {
 
   const summTimes = Object.groupBy(displaingDoTimes, ({ type }) => type);
 
+  useEffect(() => {
+    let timer = 0;
+    if (isDoing) {
+      setTimer(Date.now());
+      timer = setInterval(() => setTimer(Date.now()), 60 * 1000);
+    } else {
+      clearInterval(timer);
+    }
+    return () => {
+      clearInterval(timer);
+    };
+  }, [isDoing]);
+
   return (
     <>
       <div>
@@ -88,17 +103,10 @@ function App() {
           onClick={handleSwitchDoing}
         >
           {isDoing ? (
-            "let's rest"
+            "Finish"
           ) : (
             <>
-              let's{" "}
-              {type.search(/ing$/) !== -1 ? (
-                <span>{type}</span>
-              ) : (
-                <>
-                  doing <span>{type}</span>
-                </>
-              )}
+              Start <span>{type}</span>
             </>
           )}
         </button>
@@ -106,23 +114,21 @@ function App() {
 
       {isDoing ? (
         <div className='doing-blinker'>
-          you are{" "}
-          {type.search(/ing$/) !== -1 ? (
-            <span>{type}</span>
-          ) : (
-            <>
-              doing <span>{type}</span>
-            </>
-          )}
+          <span>{type}</span>
         </div>
       ) : (
-        <div className='resting'>you are resting</div>
+        <div className='resting'>just resting</div>
       )}
 
       <div className='start-time'>
         {startTime
-          ? "started at " +
-            new Date(startTime).toLocaleString().split(",").reverse().join(" ")
+          ? `started at ${new Date(startTime)
+              .toLocaleString()
+              .split(",")
+              .reverse()
+              .join(" ")}, spend ~ ${Math.round(
+              (timer - startTime) / (1000 * 60)
+            )} min`
           : "..."}
       </div>
 
@@ -156,7 +162,7 @@ function App() {
             <div>type</div>
             <div>start</div>
             <div>time</div>
-            <div>end</div>
+            <div>finish</div>
           </div>
           {displaingDoTimes.map((time, i) => {
             const sec = Math.ceil((time.end - time.start) / 1000);
