@@ -27,13 +27,13 @@
 
 .resting {
   color: orange;
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: bold;
 }
 
 .doing-blinker {
   color: green;
-  font-size: 1.5rem;
+  font-size: 2rem;
   font-weight: bold;
   animation: blinker 1s linear infinite alternate;
   span {
@@ -53,11 +53,6 @@
   }
 }
 
-.start-time {
-  padding: 1rem;
-  color: green;
-}
-
 .sum-times {
   max-height: 100vh;
   overflow-y: auto;
@@ -71,6 +66,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
+    padding-block: 2px;
     > div {
       align-content: center;
     }
@@ -101,7 +97,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 0.5rem;
-    > div{
+    > div {
       align-content: center;
     }
   }

@@ -114,7 +114,7 @@ function App() {
 
       {isDoing ? (
         <div className='doing-blinker'>
-          <span>{type}</span>
+          <span>{type ? type : "doing something"}</span>
         </div>
       ) : (
         <div className='resting'>just resting</div>
@@ -145,7 +145,11 @@ function App() {
             );
             return (
               <div className='sum-times-part'>
-                <div><button disabled={isDoing} onClick={()=>setType(key)}>{key}</button></div>
+                <div>
+                  <button disabled={isDoing} onClick={() => setType(key)}>
+                    {key}
+                  </button>
+                </div>
                 <div>
                   {sum} sec ~ {Math.round(sum / 60)} min ~{" "}
                   {Math.round(sum / (60 * 60))} h
@@ -193,7 +197,11 @@ function App() {
 
       {reverseDoTimes.length ? (
         <div>
-          <button className='delete-times' disabled={isDoing} onClick={handleDeleteDoTimes}>
+          <button
+            className='delete-times'
+            disabled={isDoing}
+            onClick={handleDeleteDoTimes}
+          >
             DELETE {type ? <span>{type}</span> : "ALL"} TIMES
           </button>
         </div>

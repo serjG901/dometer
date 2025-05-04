@@ -20,7 +20,9 @@ body {
   min-height: 100vh;
 }
 
+
 button {
+  min-height: 2rem;
   border-radius: 16px;
   border: 2px solid transparent;
   padding: 0.6rem 1.2rem;
@@ -28,7 +30,8 @@ button {
   font-family: inherit;
   background-color: black;
   cursor: pointer;
-  transition: border-color 0.25s;
+  opacity: 1;
+  transition: border-color 0.25s, opacity 1s linear;
 }
 button:not(:disabled):hover {
   border-color: #007bff;
@@ -39,6 +42,7 @@ button:not(:disabled):focus-visible {
 }
 button:disabled {
   opacity: 0.5;
+  cursor: not-allowed;
 }
 
 label {
@@ -51,7 +55,8 @@ input {
   padding: 0.5rem;
   font-family: inherit;
   cursor: pointer;
-  transition: border-color 0.25s;
+  opacity: 1;
+  transition: border-color 0.25s, opacity 1s linear;
 }
 input:not(:disabled):hover {
   border-color: #007bff;
@@ -63,4 +68,5 @@ input:not(:disabled):focus-visible {
 
 input:disabled {
   opacity: 0.5;
+  cursor: not-allowed;
 }

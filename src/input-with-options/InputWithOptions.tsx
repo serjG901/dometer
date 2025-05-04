@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./style.css";
+import Cross from "../cross/Cross";
 
 interface InputWithOptionsComponent {
   options?: string[];
@@ -18,7 +19,7 @@ export default function InputWithOptions({
   valueFromParent = "",
   hoistValue = () => {},
   handleFocusLeave = () => {},
-  disabled = false
+  disabled = false,
 }: InputWithOptionsComponent) {
   const [state, setState] = useState(valueFromParent);
 
@@ -26,6 +27,11 @@ export default function InputWithOptions({
     const value = e.target.value;
     setState(value);
     hoistValue(value);
+  };
+
+  const handleClearInput = () => {
+    setState("");
+    hoistValue("");
   };
 
   useEffect(() => {
@@ -58,6 +64,15 @@ export default function InputWithOptions({
             })}
           </datalist>
         ) : null}
+        {state && (
+          <button
+            disabled={disabled}
+            className='input-with-options-clear'
+            onClick={handleClearInput}
+          >
+            <Cross />
+          </button>
+        )}
       </label>
     </div>
   );
