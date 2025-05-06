@@ -65,10 +65,12 @@
   .sum-times-part {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
-    padding-block: 2px;
+    gap: 0.5rem;
+    background-color: hsl(0 50 100 / 0.05);
     > div {
       align-content: center;
+      padding-inline: 4px;
+      background-color: hsl(0 50 100 / 0.05);
     }
   }
   .sum-times-part:first-child {
@@ -76,11 +78,7 @@
     position: sticky;
     top: 0;
     background-color: hsl(0 0 20);
-    height: 2rem;
     align-content: center;
-  }
-  .sum-times-part {
-    background-color: hsl(0 50 100 / 0.05);
   }
 }
 
@@ -97,8 +95,11 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 0.5rem;
+    background-color: hsl(0 50 100 / 0.05);
     > div {
       align-content: center;
+      padding-inline: 4px;
+      background-color: hsl(0 50 100 / 0.05);
     }
   }
   .do-times-part:first-child {
@@ -106,11 +107,7 @@
     position: sticky;
     top: 0;
     background-color: hsl(0 0 20);
-    height: 2rem;
     align-content: center;
-  }
-  .do-times-part {
-    background-color: hsl(0 50 100 / 0.05);
   }
 }
 
