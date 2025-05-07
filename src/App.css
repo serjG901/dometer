@@ -53,6 +53,13 @@
   }
 }
 
+.gray {
+  color: gray;
+}
+.text-left {
+  text-align: left;
+}
+
 .table {
   max-height: 100vh;
   overflow-y: auto;
@@ -72,9 +79,6 @@
       align-content: center;
       padding-inline: 4px;
       background-color: hsl(0 50 100 / 0.05);
-      span {
-        color: gray;
-      }
     }
   }
   .row:first-child {

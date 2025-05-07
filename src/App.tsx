@@ -168,16 +168,20 @@ function App() {
                       {key}
                     </button>
                   </div>
-                  <div>
+                  <div className='text-left'>
                     <div>
-                      <span>{currentDay}:</span> {sum[0]}s ~
-                      {Math.round(sum[0] / 60)}m ~
-                      {Math.round(sum[0] / (60 * 60))}h
+                      <div className='gray'>{currentDay}:</div>
+                      <div>
+                        {sum[0]}s ~{Math.round(sum[0] / 60)}m ~
+                        {Math.round(sum[0] / (60 * 60))}h
+                      </div>
                     </div>
                     <div>
-                      <span>{currentMounth}:</span> {sum[1]}s ~
-                      {Math.round(sum[1] / 60)}m ~
-                      {Math.round(sum[1] / (60 * 60))}h
+                      <div className='gray'>{currentMounth}:</div>
+                      <div>
+                        {sum[1]}s ~{Math.round(sum[1] / 60)}m ~
+                        {Math.round(sum[1] / (60 * 60))}h
+                      </div>
                     </div>
                   </div>
                 </div>
