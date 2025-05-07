@@ -57,7 +57,7 @@ function App() {
     ? reverseDoTimes.filter((t) => t.type === type)
     : reverseDoTimes;
 
-  const summTimes = Object.groupBy(displaingDoTimes, ({ type }) => type);
+  const allDoByType = Object.groupBy(displaingDoTimes, ({ type }) => type);
 
   useEffect(() => {
     let timer = 0;
@@ -127,71 +127,102 @@ function App() {
               .split(",")
               .reverse()
               .join(" ")}, spend ~ ${Math.round(
-              (timer - startTime) / (1000 * 60)
+              (timer - startTime) / (1000 * 30)
             )} min`
           : "..."}
       </div>
 
-      {Object.keys(summTimes).length ? (
+      {Object.keys(allDoByType).length ? (
         <div className='sum-times'>
-          <div className='sum-times-part'>
-            <div>type</div>
-            <div>sum</div>
+          <div className='table'>
+            <div className='row'>
+              <div>type</div>
+              <div>current sum</div>
+            </div>
+            {Object.keys(allDoByType).map((key) => {
+              const currentDay = new Date(Date.now())
+                .toISOString()
+                .slice(0, 10);
+              const currentMounth = currentDay.slice(0, 7);
+              const sum = allDoByType[key]!.reduce(
+                (acc, a) => {
+                  const aStartDay = new Date(a.start)
+                    .toISOString()
+                    .slice(0, 10);
+                  const aStartMounth = aStartDay.slice(0, 7);
+
+                  if (aStartDay === currentDay) {
+                    acc[0] += Math.ceil((a.end - a.start) / 1000);
+                  }
+                  if (aStartMounth === currentMounth) {
+                    acc[1] += Math.ceil((a.end - a.start) / 1000);
+                  }
+                  return acc;
+                },
+                [0, 0]
+              );
+              return (
+                <div className='row'>
+                  <div>
+                    <button disabled={isDoing} onClick={() => setType(key)}>
+                      {key}
+                    </button>
+                  </div>
+                  <div>
+                    <div>
+                      <span>{currentDay}:</span> {sum[0]}s ~
+                      {Math.round(sum[0] / 60)}m ~
+                      {Math.round(sum[0] / (60 * 60))}h
+                    </div>
+                    <div>
+                      <span>{currentMounth}:</span> {sum[1]}s ~
+                      {Math.round(sum[1] / 60)}m ~
+                      {Math.round(sum[1] / (60 * 60))}h
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
-          {Object.keys(summTimes).map((key) => {
-            const sum = summTimes[key]!.reduce(
-              (acc, a) => acc + Math.ceil((a.end - a.start) / 1000),
-              0
-            );
-            return (
-              <div className='sum-times-part'>
-                <div>
-                  <button disabled={isDoing} onClick={() => setType(key)}>
-                    {key}
-                  </button>
-                </div>
-                <div>
-                  {sum} sec ~ {Math.round(sum / 60)} min ~{" "}
-                  {Math.round(sum / (60 * 60))} h
-                </div>
-              </div>
-            );
-          })}
         </div>
       ) : null}
 
       {displaingDoTimes.length ? (
         <div className='do-times'>
-          <div className='do-times-part'>
-            <div>type</div>
-            <div>start</div>
-            <div>time</div>
-            <div>stop</div>
+          <div className='table'>
+            <div className='row'>
+              <div>type</div>
+              <div>start</div>
+              <div>time</div>
+              <div>stop</div>
+            </div>
+            {displaingDoTimes.map((time, i) => {
+              const sec = Math.ceil((time.end - time.start) / 1000);
+              const dateTime1 = new Date(time.start)
+                .toLocaleString()
+                .split(",");
+              const dateTime2 = new Date(time.end).toLocaleString().split(",");
+              return (
+                <div className='row' key={i}>
+                  <div>
+                    <div>{time.type}</div>
+                  </div>
+                  <div>
+                    <div>{dateTime1[0]}</div>
+                    <div>{dateTime1[1]}</div>
+                  </div>
+                  <div>
+                    <div>{sec} sec</div>
+                    <div>~{Math.round(sec / 60)} min</div>
+                  </div>
+                  <div>
+                    <div>{dateTime2[0]}</div>
+                    <div>{dateTime2[1]}</div>
+                  </div>
+                </div>
+              );
+            })}
           </div>
-          {displaingDoTimes.map((time, i) => {
-            const sec = Math.ceil((time.end - time.start) / 1000);
-            const dateTime1 = new Date(time.start).toLocaleString().split(",");
-            const dateTime2 = new Date(time.end).toLocaleString().split(",");
-            return (
-              <div className='do-times-part' key={i}>
-                <div>
-                  <div>{time.type}</div>
-                </div>
-                <div>
-                  <div>{dateTime1[0]}</div>
-                  <div>{dateTime1[1]}</div>
-                </div>
-                <div>
-                  <div>{sec} sec</div>
-                  <div>~{Math.round(sec / 60)} min</div>
-                </div>
-                <div>
-                  <div>{dateTime2[0]}</div>
-                  <div>{dateTime2[1]}</div>
-                </div>
-              </div>
-            );
-          })}
         </div>
       ) : null}
 
