@@ -53,7 +53,7 @@
   }
 }
 
-.sum-times {
+.table {
   max-height: 100vh;
   overflow-y: auto;
   background-color: rgba(128, 128, 128, 0.1);
@@ -63,18 +63,28 @@
   gap: 0.5rem;
   position: relative;
   padding-bottom: 0.5rem;
-  .sum-times-part {
+  .row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(var(--colums), 1fr);
     gap: 0.5rem;
     background-color: hsl(0 50 100 / 0.05);
     > div {
       align-content: center;
       padding-inline: 4px;
       background-color: hsl(0 50 100 / 0.05);
+      span {
+        color: gray;
+      }
     }
   }
-  .sum-times-part:first-child {
+  .row:first-child {
+    color: gray;
+    position: sticky;
+    top: 0;
+    background-color: hsl(0 0 20);
+    align-content: center;
+  }
+  .row-sum-line {
     color: gray;
     position: sticky;
     top: 0;
@@ -83,34 +93,14 @@
   }
 }
 
+.sum-times {
+  display: contents;
+  --colums: 2;
+}
+
 .do-times {
-  max-height: 100vh;
-  overflow-y: auto;
-  background-color: rgba(128, 128, 128, 0.1);
-  width: 100%;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.5rem;
-  position: relative;
-  padding-bottom: 0.5rem;
-  .do-times-part {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 0.5rem;
-    background-color: hsl(0 50 100 / 0.05);
-    > div {
-      align-content: center;
-      padding-inline: 4px;
-      background-color: hsl(0 50 100 / 0.05);
-    }
-  }
-  .do-times-part:first-child {
-    color: gray;
-    position: sticky;
-    top: 0;
-    background-color: hsl(0 0 20);
-    align-content: center;
-  }
+  display: contents;
+  --colums: 4;
 }
 
 .delete-times {
