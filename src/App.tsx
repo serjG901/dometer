@@ -103,7 +103,7 @@ function App() {
           onClick={handleSwitchDoing}
         >
           {isDoing ? (
-            "Finish"
+            "Stop"
           ) : (
             <>
               Start <span>{type}</span>
@@ -166,7 +166,7 @@ function App() {
             <div>type</div>
             <div>start</div>
             <div>time</div>
-            <div>finish</div>
+            <div>stop</div>
           </div>
           {displaingDoTimes.map((time, i) => {
             const sec = Math.ceil((time.end - time.start) / 1000);
