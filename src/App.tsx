@@ -53,7 +53,7 @@ function App() {
 
   const reverseDoTimes = [...doTimes].reverse();
 
-  const displaingDoTimes = isFiltred
+  const displayingDoTimes = isFiltred
     ? reverseDoTimes.filter((t) => t.type === type)
     : reverseDoTimes;
 
@@ -191,7 +191,7 @@ function App() {
         </div>
       ) : null}
 
-      {displaingDoTimes.length ? (
+      {displayingDoTimes.length ? (
         <div className='do-times'>
           <div className='table'>
             <div className='row'>
@@ -200,7 +200,7 @@ function App() {
               <div>time</div>
               <div>stop</div>
             </div>
-            {displaingDoTimes.map((time, i) => {
+            {displayingDoTimes.map((time, i) => {
               const sec = Math.ceil((time.end - time.start) / 1000);
               const dateTime1 = new Date(time.start)
                 .toLocaleString()
