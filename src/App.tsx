@@ -63,7 +63,7 @@ function App() {
     let timer = 0;
     if (isDoing) {
       setTimer(Date.now());
-      timer = setInterval(() => setTimer(Date.now()), 60 * 1000);
+      timer = setInterval(() => setTimer(Date.now()), 30 * 1000);
     } else {
       clearInterval(timer);
     }
@@ -127,7 +127,7 @@ function App() {
               .split(",")
               .reverse()
               .join(" ")}, spend ~ ${Math.round(
-              (timer - startTime) / (1000 * 30)
+              (timer - startTime) / (1000 * 60)
             )} min`
           : "..."}
       </div>
