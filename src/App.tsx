@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import useDometerStore from "./store";
+import useDometerStore from "./store/store";
 import { useShallow } from "zustand/react/shallow";
 import Logo from "./assets/logo512.png";
 import PWABadge from "./PWABadge";
