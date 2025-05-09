@@ -57,7 +57,7 @@ function App() {
     ? reverseDoTimes.filter((t) => t.type === type)
     : reverseDoTimes;
 
-  const allDoByType = Object.groupBy(displaingDoTimes, ({ type }) => type);
+  const allDoByType = Object.groupBy(displayingDoTimes, ({ type }) => type);
 
   useEffect(() => {
     let timer = 0;
