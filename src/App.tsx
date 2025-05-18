@@ -82,7 +82,7 @@ function App() {
     aDownloadFile!.href = window.URL.createObjectURL(file);
     aDownloadFile!.setAttribute(
       "download",
-      `am9-actions-dometerback.json`
+      `am9-actions-dometerback${new Date().toLocaleString()}.json`
     );
     aDownloadFile!.click();
   }
