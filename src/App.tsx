@@ -72,6 +72,21 @@ function App() {
     };
   }, [isDoing]);
 
+  function saveAsLegacy() {
+    const aDownloadFile: HTMLAnchorElement = document.getElementById(
+      "aDownloadFile"
+    ) as HTMLAnchorElement;
+    const opts = { type: `application/am9` };
+    const file = new File([JSON.stringify(doTimes, null, 4)], "", opts);
+
+    aDownloadFile!.href = window.URL.createObjectURL(file);
+    aDownloadFile!.setAttribute(
+      "download",
+      `am9-actions-dometerback.json`
+    );
+    aDownloadFile!.click();
+  }
+
   return (
     <>
       <div>
@@ -229,7 +244,10 @@ function App() {
           </div>
         </div>
       ) : null}
-
+      <div>
+        <button onClick={saveAsLegacy}>download data</button>
+        <a id='aDownloadFile' download></a>
+      </div>
       {reverseDoTimes.length ? (
         <div>
           <button
